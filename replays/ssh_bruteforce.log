@@ -1,0 +1,9 @@
+<34>2025-09-30T00:00:01Z labhost sshd: Failed password for invalid user admin from 10.0.0.5 port 5555 ssh2
+<34>2025-09-30T00:00:02Z labhost sshd: Failed password for invalid user root from 10.0.0.5 port 5556 ssh2
+<34>2025-09-30T00:00:03Z labhost sshd: Failed password for invalid user oracle from 10.0.0.5 port 5557 ssh2
+<34>2025-09-30T00:00:10Z labhost sshd: Failed password for root from 10.0.0.5 port 6000 ssh2
+<34>2025-09-30T00:00:11Z labhost sshd: Failed password for root from 10.0.0.5 port 6001 ssh2
+<34>2025-09-30T00:00:12Z labhost sshd: Failed password for root from 10.0.0.5 port 6002 ssh2
+<34>2025-09-30T00:00:13Z labhost sshd: Failed password for root from 10.0.0.5 port 6003 ssh2
+<34>2025-09-30T00:00:14Z labhost sshd: Failed password for root from 10.0.0.5 port 6004 ssh2
+<34>2025-09-30T00:00:15Z labhost sshd: Failed password for root from 10.0.0.5 port 6005 ssh2

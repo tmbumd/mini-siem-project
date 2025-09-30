@@ -1,0 +1,2 @@
+<34>2025-09-30T00:02:00Z labhost kernel: BUG: unable to handle kernel NULL pointer dereference at 00000000
+<34>2025-09-30T00:02:01Z labhost kernel: Kernel panic - not syncing: Fatal exception

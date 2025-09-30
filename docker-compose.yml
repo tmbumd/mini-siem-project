@@ -1,0 +1,58 @@
+version: "3.9"
+services:
+  collector:
+    build:
+      context: .
+      dockerfile: docker/collector.Dockerfile
+    image: mini-siem-collector:latest
+    container_name: collector
+    ports:
+      - "5514:5514/udp"
+      - "5514:5514/tcp"
+    volumes:
+      - ./data:/opt/mini-siem/data
+    restart: unless-stopped
+
+  indexer:
+    build:
+      context: .
+      dockerfile: docker/indexer.Dockerfile
+    image: mini-siem-indexer:latest
+    container_name: indexer
+    depends_on:
+      - collector
+    volumes:
+      - ./data:/data
+      - ./out:/out
+      - ./rules.yml:/opt/mini-siem/rules.yml:ro
+    restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana:10.4.6
+    container_name: grafana
+    environment:
+      - GF_INSTALL_PLUGINS=frser-sqlite-datasource
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./provisioning:/etc/grafana/provisioning
+      - ./data:/var/lib/grafana/data_bind
+    depends_on:
+      - indexer
+    restart: unless-stopped
+
+  replay:
+    build:
+      context: .
+      dockerfile: docker/replay.Dockerfile
+    image: mini-siem-replay:latest
+    container_name: replay
+    depends_on:
+      - collector
+    environment:
+      - TARGET_HOST=collector
+      - TARGET_PORT=5514
+      - SPEED=1.0
+    volumes:
+      - ./replays:/replays
+    command: ["/replay/replay.py","--host","collector","--port","5514","--paths","/replays/ssh_bruteforce.log,/replays/sudo.log,/replays/kernel_oops.log","--speed","1.0"]

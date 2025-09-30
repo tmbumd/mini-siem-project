@@ -1,0 +1,55 @@
+- id: auth_failed_many
+  name: Multiple failed SSH logins
+  when:
+    app_contains: "sshd"
+    msg_regex: "Failed password"
+  window: 5m
+  threshold: 5
+  severity: high
+  tags: [auth, brute-force]
+  alert: summary
+
+- id: sudo_root_shell
+  name: Sudo to root shell
+  when:
+    msg_regex: "sudo:.*session opened for user root"
+  severity: medium
+  tags: [priv-esc]
+  alert: verbose
+
+- id: kernel_oops
+  name: Kernel oops
+  when:
+    app_contains: "kernel"
+    msg_regex: "Oops|BUG|panic"
+  severity: critical
+  tags: [stability]
+  alert: summary
+
+- id: new_user_added
+  name: New local user added
+  when:
+    msg_regex: "useradd\[[0-9]+\]: new user:"
+  severity: medium
+  tags: [iam, persistence]
+  alert: summary
+
+- id: port_scan_burst
+  name: Connection refused burst (possible scan)
+  when:
+    msg_contains: "Connection refused"
+  window: 1m
+  threshold: 20
+  severity: low
+  tags: [recon]
+  alert: summary
+
+- id: http_401_spike
+  name: HTTP 401 spike
+  when:
+    msg_regex: "HTTP/1.1\" 401|status=401"
+  window: 2m
+  threshold: 30
+  severity: medium
+  tags: [web, auth]
+  alert: summary

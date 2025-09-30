@@ -1,0 +1,2 @@
+<34>2025-09-30T00:01:00Z labhost sudo:     tim : TTY=pts/0 ; PWD=/home/tim ; USER=root ; COMMAND=/bin/bash
+<34>2025-09-30T00:01:01Z labhost sudo: pam_unix(sudo:session): session opened for user root by tim(uid=0)

@@ -1,0 +1,39 @@
+{
+  "annotations": {"list": []},
+  "editable": true,
+  "id": null,
+  "panels": [
+    {
+      "type": "table",
+      "title": "Top Hosts by Event Count",
+      "targets": [
+        {
+          "datasource": {"type": "frser-sqlite-datasource", "uid": "sqlite"},
+          "format": "table",
+          "rawSql": "SELECT host, COUNT(*) as cnt FROM events GROUP BY host ORDER BY cnt DESC LIMIT 10;"
+        }
+      ],
+      "gridPos": {"h": 8, "w": 24, "x": 0, "y": 0}
+    },
+    {
+      "type": "table",
+      "title": "Most Recent Events",
+      "targets": [
+        {
+          "datasource": {"type": "frser-sqlite-datasource", "uid": "sqlite"},
+          "format": "table",
+          "rawSql": "SELECT ts, app, substr(msg,1,120) as msg FROM events ORDER BY rowid DESC LIMIT 20;"
+        }
+      ],
+      "gridPos": {"h": 8, "w": 24, "x": 0, "y": 8}
+    }
+  ],
+  "schemaVersion": 38,
+  "style": "dark",
+  "tags": ["mini-siem"],
+  "templating": {"list": []},
+  "time": {"from": "now-6h", "to": "now"},
+  "timezone": "browser",
+  "title": "Mini-SIEM Dashboard",
+  "version": 1
+}
