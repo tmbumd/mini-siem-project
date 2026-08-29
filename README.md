@@ -1,5 +1,7 @@
 # Mini-SIEM — C Collector + Python Rule Engine (Docker Demo)
 
+full instructions 
+
 A lean, hackable SIEM you can run locally or on a small VPS. Ingests syslog, normalizes to JSON, stores to newline-delimited JSON and SQLite, and evaluates YAML detection rules. Includes a push-button Docker demo, Grafana with SQLite datasource plugin, replayed attacks, benchmarks, and CI.
 
 ## One-command demo
